@@ -1,0 +1,43 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/common.puml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons/devicons.puml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5/aws.puml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5/fa5-server.puml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5/fa5-brain.puml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5/fa5-file-alt.puml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons/react.puml
+!includeurl https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons/ethereum.puml
+
+actor User
+
+cloud "AWS Cloud" as AWS {
+  node "EC2\nApp Server" as EC2 <<aws.ec2>> {
+    component "Cloud architecture for automated financial reporting" as Frontend <<react>>
+    component "Parser Engine\n(CSV/PDF)" as Parser <<fa5-file-alt>>
+    component "AI Transaction Insights\n(NLP + Auto Categorizer)" as AI <<fa5-brain>>
+    component "Smart Contract\n(addRecord, addRecords)" as Contract
+  }
+
+  database "Private Blockchain\n(Geth/Quorum Node)" as Blockchain <<ethereum>>
+  component "PM2\nProcess Manager" as PM2 <<fa5-server>>
+  storage "S3\n(File Backups)" as S3 <<aws.s3>>
+
+  component "Dashboard\n(Financial Viewer)" as Dashboard
+
+  Frontend --> Parser : Upload file
+  Parser --> AI : Extract structured data
+  AI --> Frontend : Return parsed records (JSON)
+  
+  Frontend --> Contract : Send transaction(s) via Ethers.js
+  Contract --> Blockchain : Write Tx
+  Blockchain --> Contract : Tx Hash + Confirmation
+
+  Frontend --> Dashboard : View transactions\nfrom Blockchain
+  Frontend --> S3 : Backup original files
+
+  PM2 --> EC2 : Run & monitor app
+}
+
+User --> Frontend : Access via web browser
+
+@enduml
