@@ -34,7 +34,7 @@ The application follows a modular architecture with clear separation of concerns
 ## Deployment
 This project has been deployed on AWS, leveraging cloud infrastructure for scalability and reliability.
 
-Frontend Application: [http://43.204.143.148:5173/] ← Live
+Frontend Application: [http://13.203.203.122:8080/] ← Live
 
 ### GitHub Repository Notesgit initgit initgit init
 During my development, I've set up the project to exclude certain files when pushing to GitHub:
