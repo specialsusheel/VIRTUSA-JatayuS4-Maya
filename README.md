@@ -36,15 +36,6 @@ This project has been deployed on AWS, leveraging cloud infrastructure for scala
 
 Frontend Application: [http://13.203.203.122:8080/] ← Live
 
-### GitHub Repository Notesgit initgit initgit init
-During my development, I've set up the project to exclude certain files when pushing to GitHub:
-- I've added node_modules/ to the .gitignore file (no need to upload these huge dependencies)
-- I'm keeping build artifacts and compiled files out of the repo (they're generated anyway)
-- All my .env files stay local to protect sensitive keys and credentials
-- I'm avoiding large binary files that would bloat the repo
-
-I've created a comprehensive .gitignore file to handle all this automatically.
-
 ## Getting Started
 
 ### Prerequisites
@@ -95,6 +86,4 @@ I've created a comprehensive .gitignore file to handle all this automatically.
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgments
-- VIRTUSA-JatayuS4 Hackathon organizers
-- All open-source libraries and frameworks used in this project
+
